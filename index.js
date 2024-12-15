@@ -30,6 +30,10 @@ app.get("/", function (req, res) {
   res.send("Grab Market");
 });
 
+// app.get("/favicon", function (req, res) {
+
+// });
+
 app.get("/banners", (req, res) => {
   models.Banner.findAll({
     limit: 2,
