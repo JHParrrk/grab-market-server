@@ -11,14 +11,29 @@ const upload = multer({
       cb(null, "uploads/");
     },
     filename: function (req, file, cb) {
+      // 잘못 해석된 인코딩을 바로잡아주는 코드 추가
+      file.originalname = Buffer.from(file.originalname, "latin1").toString(
+        "utf-8"
+      );
       cb(null, file.originalname);
     },
   }),
 });
 // 다른 파일이 오면 어디로 저장할거니
 
+// 명시적으로 CORS 옵션 지정
+const corsOptions = {
+  origin: [
+    "http://localhost:3000", // 내 PC에서 개발할 때
+    "http://192.168.0.4:8080", // 다른 PC나 모바일에서 접근할 때(내 서버 IP)
+    // 필요하면 추가로 허용할 주소를 배열에 넣을 수 있음
+  ],
+  credentials: true, // 인증 정보(Cookie 등) 포함시 허용, 필요에 따라 true/false
+};
+
 app.use(express.json()); //json 형식의 데이터를 처리할 수 있게 설정하는 코드
-app.use(cors()); //브라우저의 CORS 이슈를 막기 위해 사용하는 코드
+// app.use(cors());
+app.use(cors(corsOptions)); //브라우저의 CORS 이슈를 막기 위해 사용하는 코드
 app.use("/uploads", express.static("uploads"));
 // 이 코드는 실제 파일의 경로와 클라이언트가 접근하는 경로를 매핑하는 역할을 합니다. 간단하게 말해, 클라이언트가 /uploads 경로로 파일에 접근할 수 있게 만드는 것입니다.
 // express.static("uploads"): uploads 폴더를 정적 파일을 제공하는 경로로 설정합니다. 클라이언트가 이 폴더의 파일에 접근할 수 있게 됩니다.
