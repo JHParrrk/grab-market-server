@@ -1,4 +1,4 @@
-//express.js
+//index.js
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -27,6 +27,7 @@ const corsOptions = {
     "http://localhost:3000", // 내 PC에서 개발할 때
     "http://192.168.0.4:8080", // 다른 PC나 모바일에서 접근할 때(내 서버 IP)
     // 필요하면 추가로 허용할 주소를 배열에 넣을 수 있음
+    "https://grab-market-web-seven.vercel.app", //vercel 배포 주소
   ],
   credentials: true, // 인증 정보(Cookie 등) 포함시 허용, 필요에 따라 true/false
 };
