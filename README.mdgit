@@ -1,2 +1,139 @@
-"# grab-market-server"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/JHParrrk/grab-market-server.gitgit push -u origin main
-"# grab-market-server"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/JHParrrk/grab-market-server.gitgit push -u origin main
+# Grab Market Server
+
+**Grab Market Server**는 프론트엔드와의 통합을 위해 설계된 백엔드 API 서버입니다. 이 프로젝트는 Node.js와 Express를 기반으로 하며, SQLite 데이터베이스와 연동됩니다. 주요 기능으로는 파일 업로드, 데이터 관리, 및 RESTful API 제공 등이 포함됩니다.
+
+---
+
+## 📚 주요 기능
+
+- **CORS 지원**: 클라이언트와 백엔드 간 안전한 데이터 통신을 구현.
+- **파일 업로드**: `multer`를 사용하여 이미지 및 파일 업로드 처리.
+- **SQLite 데이터베이스 연동**: 간단한 로컬 데이터 저장소로 SQLite 사용.
+- **Express 기반 API 제공**: RESTful API 엔드포인트 구성.
+- **Docker 지원**: Docker를 이용한 컨테이너화 및 배포 가능.
+
+---
+
+## 🛠 사용된 기술 스택
+
+- **언어**: Node.js (JavaScript)
+- **프레임워크**: Express
+- **라이브러리 및 도구**:
+  - `cors`
+  - `multer`
+  - `sequelize`
+  - `sqlite3`
+- **배포 및 개발 환경**: Docker, Docker Compose
+- **ORM**: Sequelize
+
+---
+
+## 🖥 프로젝트 구조
+
+```
+grab-market-server/
+├── Dockerfile            # Docker 이미지 생성 파일
+├── package.json          # 프로젝트 의존성 관리
+├── index.js              # 서버 진입 파일
+├── /data                 # SQLite 데이터베이스 저장 디렉토리
+└── /routes               # API 라우트 정의
+```
+
+---
+
+## 🚀 설치 및 실행 방법
+
+### 1. 로컬 환경에서 실행
+1. **프로젝트 클론**
+   ```bash
+   git clone https://github.com/JHParrrk/grab-market-server.git
+   cd grab-market-server
+   ```
+
+2. **의존성 설치**
+   ```bash
+   npm install
+   ```
+
+3. **애플리케이션 실행**
+   ```bash
+   npm start
+   ```
+   서버는 기본적으로 `http://localhost:8080`에서 실행됩니다.
+
+---
+
+### 2. Docker로 실행
+1. **Docker 이미지 빌드**
+   ```bash
+   docker build -t grab-market-server .
+   ```
+
+2. **Docker 컨테이너 실행**
+   ```bash
+   docker run -p 8080:8080 grab-market-server
+   ```
+
+---
+
+## ⚙️ 환경 설정
+
+- 기본 포트: `8080`
+- 데이터베이스 URL: `sqlite:///data/sqlite.db`
+
+Docker가 실행될 때 데이터베이스는 `/data` 디렉토리에 저장됩니다.
+
+---
+
+## 📬 API 엔드포인트
+
+| 메서드 | 경로        | 설명              |
+|--------|-------------|------------------|
+| GET    | /products   | 상품 리스트 조회  |
+| POST   | /products   | 새 상품 추가     |
+| GET    | /products/:id | 특정 상품 상세 조회 |
+| POST   | /upload     | 이미지 업로드 처리 |
+
+---
+
+## 🛠 개발 관련 도구
+- **Node.js**: v22.11.0
+- **Docker**: 최신 버전
+
+---
+
+## 🤝 기여 방법
+1. 이 프로젝트를 **포크(Fork)** 하세요.
+2. 새로운 브랜치를 생성하세요 (`git checkout -b feature/my-feature`).
+3. 변경 사항을 커밋하세요 (`git commit -am 'Add some feature'`).
+4. 원격 브랜치에 푸시하세요 (`git push origin feature/my-feature`).
+5. Pull Request를 여세요.
+
+---
+
+## 📄 라이선스
+
+이 프로젝트는 [ISC 라이선스](./LICENSE)에 따라 배포됩니다.
+
+---
+
+## 🧑‍💻 작성자
+
+**JHParrrk**  
+자세한 내용은 [GitHub 프로필](https://github.com/JHParrrk)을 참고하세요.
+
+---
+
+## 📝 리포지토리 초기화 기록
+
+이 리포지토리는 다음과 같은 명령어로 초기화되었습니다:
+
+```
+# grab-market-server
+init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/JHParrrk/grab-market-server.git
+git push -u origin main
+```
